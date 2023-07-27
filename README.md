@@ -19,3 +19,4 @@
 - `php bin/console doctrine:migrations:migrate` // *pour appliquer les différentes migrations du projet (création de tables de BDD, liaisons, etc...)*
 - `php bin/console doctrine:fixtures:load` // *pour charger les fausses données (fixtures) dans la base de données*
 - `php -S 0.0.0.0:8000 -t public` // *pour lancer un serveur local (localhost:8000 dans l'URL pour y accéder)*
+# projet-06-botiga-back
