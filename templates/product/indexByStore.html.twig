@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Liste des produits de votre boutique</h1>
+	{{ include('_flash_messages.html.twig') }}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Prix</th>
+				<th>Taux de TVA</th>
+				<th>Unité de mesure</th>
+				<th>PPU</th>
+				<th>Stock</th>
+				<th>Image</th>
+				<th>Cœurs</th>
+				<th>Producteur</th>
+				<th>Catégorie</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in store.products %}
+				<tr>
+					<td>{{ product.id }}</td>
+					<td>{{ product.name }}</td>
+					<td>{{ product.description }}</td>
+					<td>{{ product.price }}</td>
+					<td>{{ product.vatRate }}</td>
+					<td>{{ product.unitOfMeasurement }}</td>
+					<td>{{ product.pricePerUnit }}</td>
+					<td>{{ product.stock }}</td>
+					<td>
+						<img style="width:100px; heigth:100px;" src="{{ product.picture }}" alt="Image du produit">
+					</td>
+					<td>{{ product.heartLike }}</td>
+					<td>{{ product.store }}</td>
+					<td>{{ product.category }}</td>
+					<td>{{ product.createdAt|date('d-m-Y H:i') }}</td>
+					<td>{{ product.updatedAt|date('d-m-Y H:i') }}</td>
+
+					<td>
+						<a class="btn btn-success" href="{{ path('app_product_show', {'id': product.id}) }}">
+							<i class="bi bi-eye"></i>
+						</a>
+						<a class="btn btn-warning" href="{{ path('app_product_edit', {'id': product.id}) }}">
+							<i class="bi bi-pencil"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="13">Aucun produit enregistré</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_product_new') }}" class="btn btn-primary me-2">Enregistrer un nouveau produit</a>
+
+{% endblock %}

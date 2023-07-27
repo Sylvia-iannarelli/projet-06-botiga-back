@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# TODO A  VERIFIER
+# creation de la route pour le formulaire de connexion
+app_login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+api_login_check:
+    path: /api/login_check

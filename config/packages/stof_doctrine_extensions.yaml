@@ -1,0 +1,8 @@
+#  https://symfonycasts.com/screencast/symfony2-ep3/timestampable
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            sluggable: true
+            timestampable: true
+            blameable: true

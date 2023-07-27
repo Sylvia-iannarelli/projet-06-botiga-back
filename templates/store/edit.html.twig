@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Store
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Modifier votre boutique
+	</h1>
+
+	{{ include('store/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_store_index') }}" class="btn btn-success me-2">Retour à la liste</a>
+	{% endif %}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('store/_delete_form.html.twig') }}
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Détail de la commande</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ order.id }}</td>
+			</tr>
+			<tr>
+				<th>Prix total</th>
+				<td>{{ order.orderPrice }}
+					€</td>
+			</tr>
+			<tr>
+				<th>Nb total de produits ou lots</th>
+				<td>{{ order.quantity }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ order.createdAt|date('d-m-Y H:i') }}</td>
+			</tr>
+			<tr>
+				<th>Date de modification</th>
+				<td>{{ order.updatedAt|date('d-m-Y H:i') }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="table table-striped">
+		<thead>
+			<th>Produit</th>
+			<th>Prix</th>
+			<th>Quantité</th>
+			<th>Total produit</th>
+			<th>Boutique</th>
+		</thead>
+		<tbody>
+			{% for orderline in order.orderlines %}
+				<tr>
+					<td>{{ orderline.product }}</td>
+					<td>{{ orderline.product.price }}
+						€</td>
+					<td>x
+						{{ orderline.quantity }}</td>
+					<td>{{ orderline.product.price*orderline.quantity }}
+						€</td>
+					<td>{{ orderline.product.store }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_order_index') }}" class="btn btn-primary me-2">Retour à la liste</a>
+	{% endif %}
+
+	{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN') %}
+		<a href="{{path('app_store_order_index', {'id':app.user.store.id})}}" class="btn btn-primary me-2">Retour à la liste de vos commandes</a>
+	{% endif %}
+
+{% endblock %}

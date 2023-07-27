@@ -1,0 +1,30 @@
+STORE: storeCode, siret, name, street, number, zip, city, phone, schedules, website, description, picture, heartlike, createdAt, updatedAt,
+gére, 11 STORE, 01 USER
+USER: userCode, firstname, lastname,  email, phone, password, role, connected, createdAt, updatedAt,
+:
+:
+
+vend, 11 PRODUCT, 0N STORE
+reçoit, 0N STORE, 11 ORDER
+passe, 11 ORDER, 0N USER
+actualise, 0N USER, 01 ORDER
+:
+:
+
+PRODUCT: productCode, name, description, price, vatRate, unitOfMeasurement, pricePerUnitOfMeasurement, stock, picture, heartlike, createdAt, updatedAt,
+inclut, 0N PRODUCT, 1N ORDER: productQuantity,
+ORDER: orderCode, orderPrice, quantity, createdAt, updatedAt,
+est à l’étape, 11 ORDER, 0N STATUSORDER
+STATUSORDER: statusOrderCode, name, createdAt, updatedAt,
+
+contient, 0N CATEGORY, 11 PRODUCT
+:
+est validé par, 11 PAYMENT, 01 ORDER
+:
+:
+
+CATEGORY: categoryCode, name, description, picture, createdAt, updatedAt,
+:
+PAYMENT: paymentCode, cardholderName, numCard, expirationDate, secretCode, valid, createdAt,
+:
+:

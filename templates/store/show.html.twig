@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Store
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Voici votre boutique
+	</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ store.id }}</td>
+			</tr>
+			<tr>
+				<th>Siret</th>
+				<td>{{ store.siret }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ store.name }}</td>
+			</tr>
+			<tr>
+				<th>Rue</th>
+				<td>{{ store.street }}</td>
+			</tr>
+			<tr>
+				<th>Numéro</th>
+				<td>{{ store.number }}</td>
+			</tr>
+			<tr>
+				<th>Code postal</th>
+				<td>{{ store.zip }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ store.city }}</td>
+			</tr>
+			<tr>
+				<th>Téléphone</th>
+				<td>{{ store.phone }}</td>
+			</tr>
+			<tr>
+				<th>Horaires</th>
+				<td>{{ store.schedules }}</td>
+			</tr>
+			<tr>
+				<th>Site Internet</th>
+				<td>{{ store.website }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ store.description }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ store.createdAt|date('d-m-Y H:i') }}</td>
+			</tr>
+			<tr>
+				<th>Date de mise à jour</th>
+				<td>{{ store.updatedAt|date('d-m-Y H:i') }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_store_index') }}" class="btn btn-success me-2">Retour à la liste</a>
+	{% endif %}
+
+	<a href="{{ path('app_store_edit', {'id': store.id}) }}" class="btn btn-warning me-2">Modifier</a>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('store/_delete_form.html.twig') }}
+	{% endif %}
+
+{% endblock %}

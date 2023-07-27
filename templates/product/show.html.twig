@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+
+    <h1 class="mt-5">Produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>TVA (en %)</th>
+                <td>{{ product.vatRate }}</td>
+            </tr>
+            <tr>
+                <th>Unité de mesure</th>
+                <td>{{ product.unitOfMeasurement }}</td>
+            </tr>
+            <tr>
+                <th>PPU</th>
+                <td>{{ product.pricePerUnit }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ product.stock }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                    <td>
+                        <img style="width:300px; heigth:300px;"src="{{ product.picture }}" alt="Image du produit">
+                    </td>
+            </tr>
+            <tr>
+                <th>Cœurs</th>
+                <td>{{ product.heartLike }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ product.createdAt ? product.createdAt|date('d-m-Y H:i') }}</td>
+            </tr>
+            <tr>
+                <th>Date de mise à jour</th>
+                <td>{{ product.updatedAt ? product.updatedAt|date('d-m-Y H:i') }}</td>
+            </tr> 
+            <tr>
+                <th>Producteur</th>
+                <td>{{ product.store }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ product.category }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_product_index') }}" class="btn btn-primary me-2">Retour à la liste</a>
+	{% endif %}
+
+	{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN') %}
+		<a href="{{path('app_store_product_index', {'id':app.user.store.id})}}" class="btn btn-primary me-2">Retour à la liste de vos produits</a>
+	{% endif %}
+
+    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-warning me-2">Modifier</a>
+
+    {{ include('product/_delete_form.html.twig') }}
+    
+{% endblock %}

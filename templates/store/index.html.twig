@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Botiga | Boutiques
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Liste de toutes les boutiques
+	</h1>
+	{{ include('_flash_messages.html.twig') }}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Siret</th>
+				<th>Name</th>
+				<th>Street</th>
+				<th>Number</th>
+				<th>Zip</th>
+				<th>City</th>
+				<th>Phone</th>
+				<th>Schedules</th>
+				<th>Website</th>
+				<th>Description</th>
+				<th>User</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for store in stores %}
+				<tr>
+					<td>{{ store.id }}</td>
+					<td>{{ store.siret }}</td>
+					<td>{{ store.name }}</td>
+					<td>{{ store.street }}</td>
+					<td>{{ store.number }}</td>
+					<td>{{ store.zip }}</td>
+					<td>{{ store.city }}</td>
+					<td>{{ store.phone }}</td>
+					<td>{{ store.schedules }}</td>
+					<td>{{ store.website }}</td>
+					<td>{{ store.description }}</td>
+					<td>{{ store.user }}</td>
+					<td>{{ store.createdAt|date('d-m-Y H:i') }}</td>
+					<td>{{ store.updatedAt|date('d-m-Y H:i') }}</td>
+					<td>
+					   <a class="btn btn-success" href="{{ path('app_store_show', {'id': store.id}) }}"><i class="bi bi-eye"></i></a>
+						<a class="btn btn-warning"href="{{ path('app_store_edit', {'id': store.id}) }}"> <i class="bi bi-pencil"></i></a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">Aucune boutique enregistrée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

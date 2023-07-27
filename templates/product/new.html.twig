@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Produit{% endblock %}
+
+{% block body %}
+
+    <h1 class="mt-5">Ajouter votre produit</h1>
+    {{ include('product/_form.html.twig') }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_product_index') }}" class="btn btn-primary me-2">Retour à la liste</a>
+	{% endif %}
+
+	{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN') %}
+		<a href="{{path('app_store_product_index', {'id':app.user.store.id})}}" class="btn btn-primary me-2">Retour à la liste de vos produits</a>
+	{% endif %}
+
+{% endblock %}

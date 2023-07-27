@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Botiga | Commandes
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Liste de toutes les commandes</h1>
+	{{ include('_flash_messages.html.twig') }}
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>OrderPrice</th>
+				<th>Quantity</th>
+				<th>Producteur</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for order in orders %}
+				<tr>
+					<td>{{ order.id }}</td>
+					<td>{{ order.orderPrice }}</td>
+					<td>{{ order.quantity }}</td>
+					<td>{{ order.store }}</td>
+					<td>{{ order.createdAt|date('d-m-Y H:i') }}</td>
+					<td>{{ order.updatedAt|date('d-m-Y H:i') }}</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('app_order_show', {'id': order.id}) }}">
+							<i class="bi bi-eye"></i>
+						</a>
+						{# <a href="{{ path('app_order_edit', {'id': order.id}) }}">edit</a> #}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">Aucune commande enregistrée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Historique de vos commandes</h1>
+	{{ include('_flash_messages.html.twig') }}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>OrderPrice</th>
+				<th>Quantity</th>
+				<th>Producteur</th>
+				<th>Date de création</th>
+				<th>Date de mise à jour</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for order in store.orders %}
+				<tr>
+					<td>{{ order.id }}</td>
+					<td>{{ order.orderPrice }}</td>
+					<td>{{ order.quantity }}</td>
+					<td>{{ order.store }}</td>
+					<td>{{ order.createdAt|date('d-m-Y H:i') }}</td>
+					<td>{{ order.updatedAt|date('d-m-Y H:i') }}</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('app_order_show', {'id': order.id}) }}">
+							<i class="bi bi-eye"></i>
+						</a>
+						{# <a class="btn btn-warning" href="{{ path('app_order_edit', {'id': order.id}) }}">
+							<i class="bi bi-pencil"></i>
+						</a> #}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">Aucune commande enregistrée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

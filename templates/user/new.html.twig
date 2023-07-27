@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel utilisateur{% endblock %}
+
+{% block body %}
+<div class="container-fluid tex-center bg-primary bg-opacity-10 w-50 card py-2 mt-3 mb-3">
+ <h1 class="mt-2 m-b fs-2 text-center "> Créer votre profil</h1>
+
+	{{ include('user/_form.html.twig') }}
+</div>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_user_index') }}" class="btn btn-success me-2">Retour à la liste</a>
+	{% endif %}
+    
+{% endblock %}

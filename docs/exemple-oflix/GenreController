@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Controller\Api;
+
+use App\Entity\Genre;
+use App\Repository\GenreRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class GenreController extends AbstractController
+{
+    /**
+     * endpoint for all genres
+     * 
+     * @Route("/api/genres", name="app_api_genre_getGenres", methods={"GET"})
+     */
+    public function getGenres(GenreRepository $genreRepository): JsonResponse
+    {
+        $genres = $genreRepository->findAll();
+
+        // la methode json devra être remplis pour pouvoir atteindre le parma context, du coup en premier -> les données, en deuxième -> le code http (l'objet response les fournis tous dans des constantes), en troisième -> les headers, et enfin le context
+        return $this->json($genres, Response::HTTP_OK, [],["groups" => "genres"]);
+    }
+
+    /**
+     * endpoint for movies of a specific genres
+     * 
+     * @Route("/api/genres/{id}/movies", name="app_api_genre_getMoviesByGenres", methods={"GET"})
+     */
+    public function getMoviesByGenres(Genre $genre = null): JsonResponse
+    {
+        if(!$genre){
+            return $this->json(["error" => "Genre inexistant"], Response::HTTP_NOT_FOUND);
+        }
+
+        $movies = $genre->getMovies();
+
+        // la methode json devra être remplis pour pouvoir atteindre le parma context, du coup en premier -> les données, en deuxième -> le code http (l'objet response les fournis tous dans des constantes), en troisième -> les headers, et enfin le context
+        return $this->json($movies, Response::HTTP_OK, [], ["groups" => "movies"]);
+    }
+}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Order{% endblock %}
+
+{% block body %}
+  <h1 class="mt-5">Creer vtre commande	</h1>
+
+    {{ include('order/_form.html.twig') }}
+
+    <a href="{{ path('app_order_index') }}"class="btn btn-success me-2">Retour a la liste</a>
+{% endblock %}

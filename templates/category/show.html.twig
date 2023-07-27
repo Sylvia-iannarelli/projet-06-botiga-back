@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Détail de la catégorie</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ category.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ category.name }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ category.description }}</td>
+			</tr>
+			{#  TODO Image à supprimer, géré par le front #}
+			<tr>
+				<th>Image</th>
+				<td>{{ category.picture }}</td>
+			</tr>
+			<tr>
+				 <th>Date de création</th>
+				<td>{{ category.createdAt|date('d-m-Y H:i') }}</td>
+			</tr>
+			<tr>
+			 	<th>Date de mise à jour</th>
+				<td>{{ category.updatedAt|date('d-m-Y H:i') }}</td> 
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_category_index') }}" class="btn btn-success me-2">Retour à la liste</a>
+
+	<a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning me-2">Modifier</a>
+
+	{{ include('category/_delete_form.html.twig')}}
+{% endblock %}

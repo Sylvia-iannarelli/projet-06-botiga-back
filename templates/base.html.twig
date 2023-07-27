@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>
+			{% block title %}Botiga
+			{% endblock %}
+		</title>
+
+		<!-- Bootstrap CSS -->
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+		<!-- Bootstrap icons -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+
+	</head>
+
+	<body>
+
+		<!-- Nav -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a href="{{path('app_main_index')}}" class="navbar-brand">
+					<img src="{{asset('asset/images/logoBotiga.png')}}" height="30" alt="Logo Botiga">
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+						{% block nav %}
+
+							{# NAV ADMIN #}
+							{% if is_granted('ROLE_ADMIN')%}
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_user_index')}}">Utilisateurs</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_store_index')}}">Boutiques</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_product_index')}}">Produits</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_category_index')}}">Catégories</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_order_index')}}">Commandes</a>
+								</li>
+							{% endif %}
+
+							{# NAV PRODUCER #}
+							{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN')%}
+								<li class="nav-item">
+									<a class="nav-link active" href="{{path('app_user_show', {'id':app.user.id})}}">Profil</a>
+								</li>
+
+								{% if app.user.store.id is defined  %}
+									<li class="nav-item">
+										<a class="nav-link active" href="{{path('app_store_show', {'id':app.user.store.id})}}">Boutique</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" href="{{path('app_store_product_index', {'id':app.user.store.id})}}">Produits</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" href="{{path('app_store_order_index', {'id':app.user.store.id})}}">Commandes</a>
+									</li>
+								{% endif %}
+
+							{% endif %}
+
+						{% endblock %}
+
+					</ul>
+					{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+							<li class="nav-item dropdown">
+								<a
+									class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+									<!-- Bootstrap CSS -->
+									<link
+									href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+									<!-- Bootstrap icons -->
+									<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+									<span>{{app.user.email}}
+										|
+										{% if is_granted('ROLE_ADMIN') %}
+											Administrateur
+										{% elseif is_granted('ROLE_PRODUCER') %}
+											Producteur
+										{% endif %}
+									</span>
+									<i class="bi bi-person-square"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="{{path('app_user_show', {'id':app.user.id})}}">Profil</a>
+									</li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{path("app_logout")}}">Déconnexion</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					{% else %}
+						<a href="{{ path('app_user_new') }}" class="btn btn-primary me-2">Inscription</a>
+						<a href="{{ path("app_login") }}" class="btn btn-danger me-2">Connexion</a>
+					{% endif %}
+				</div>
+			</div>
+		</nav>
+
+		{% block body %}{% endblock %}
+
+		<!-- footer -->
+		<footer class="container-fluid py-4 border-top text-center">
+			<span class="text-muted">Botiga made with &hearts; by Karine, So Vencesla et Sylvia !
+			</span>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+		</body>
+	</body>
+
+</html>

@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Profil de l'utilisateur</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ user.id }}</td>
+			</tr>
+			<tr>
+				<th>Prénom</th>
+				<td>{{ user.firstname }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ user.lastname }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>Numéro de téléphone</th>
+				<td>{{ user.phone }}</td>
+			</tr>
+			<tr>
+				<th>Rôle</th>
+				<td>
+					{% if 'ROLE_PRODUCER' in user.roles %}
+						Producteur
+					{% elseif 'ROLE_ADMIN' in user.roles %}
+						Administrateur
+					{% elseif 'ROLE_USER' in user.roles %}
+						Utilisateur
+					{% endif %}
+				</td>
+			</tr>
+			{% if is_granted('ROLE_ADMIN') %}
+				<tr>
+					<th>Boutique</th>
+					<td>{{ user.store }}</td>
+				</tr>
+			{% endif %}
+			{% if app.user.store.id is defined %}
+				{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN') %}
+					<tr>
+						<th>Boutique</th>
+						<td>
+							<a href="{{ path('app_store_show', {'id': app.user.store.id}) }}">{{ user.store }}</a>
+						</td>
+					</tr>
+				{% endif %}
+			{% endif %}
+			<tr>
+				<th>Date de création</th>
+				<td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
+			</tr>
+			<tr>
+				<th>Date de mise à jour</th>
+				<td>{{ user.updatedAt|date('d-m-Y H:i') }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_user_index') }}" class="btn btn-success me-2">Retour à la liste</a>
+	{% endif %}
+
+	<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-warning me-2">Modifier</a>
+
+	{% if is_granted('ROLE_PRODUCER') and not is_granted('ROLE_ADMIN') and user.store == "" %}
+		<a href="{{ path('app_store_new') }}" class="btn btn-primary me-2">Créer une boutique</a>
+	{% endif %}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('user/_delete_form.html.twig') }}
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Botiga | Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Liste des utilisateurs
+	</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>Email</th>
+				<th>Numéro de téléphone</th>
+				<th>Boutique</th>
+				<th>Rôle</th>
+				<th>Date de création</th>
+				<th>Date de modification</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody class="ms-2">
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.firstname }}</td>
+					<td>{{ user.lastname }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.phone }}</td>
+					<td>{{ user.store }}</td>
+					<td>
+						{# <td>{{ user.roles}}</td>  #}
+						{# on peut utiliser l'opérateur "in" de Twig pour afficher le rôle de l'utilisateur #}
+							{% if 'ROLE_PRODUCER' in user.roles %}
+							Producteur
+						{% elseif 'ROLE_ADMIN' in user.roles %}
+							Administrateur
+						{% elseif 'ROLE_USER' in user.roles %}
+							Utilisateur
+						{% endif %}
+					</td>
+					<td>{{ user.createdAt|date('d-m-Y H:i') }}</td>
+					<td>{{ user.updatedAt|date('d-m-Y H:i') }}</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('app_user_show', {'id': user.id}) }}">
+							<i class="bi bi-eye"></i>
+						</a>
+						<a class="btn btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">
+							<i class="bi bi-pencil"></i>
+						</a>
+					</td>
+				</tr>
+
+			{% else %}
+				<tr>
+					<td colspan="10">Il n'y a pas d'utilisateur créé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('app_user_new') }}" class="btn btn-primary me-2">Créer un nouvel utilisateur</a> #}
+	<p>Pour créer un nouvel utilisateur veuillez vous déconnecter et passer par le formulaire d'inscription</p>
+
+{% endblock %}

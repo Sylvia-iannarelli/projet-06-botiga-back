@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Page accueil
+{% endblock %}
+
+{% block body %}
+<div class="container my-4  card bg-success  p-2 text-white bg-opacity-25 ">
+		<div class="p-5 rounded">
+			<div class="col-sm-8 py-5 mx-auto">
+				<h1 class=" text-center mb-1 display-5 fw-normal text-dark">Bienvenue sur BOTIGA
+				</h1>
+				<div style="height: 350px;">
+					<img src="{{ asset('asset/images/fruits.png') }}" class="img-fluid rounded   d-block " alt="image ferme">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+			
+{# TODO INCLURE LE FORM UTILISATEUR de connexion #}
+		{# {{ include('security/login.html.twig')}}    #}
+		{{ include('_flash_messages.html.twig') }}
+	{% endblock %}

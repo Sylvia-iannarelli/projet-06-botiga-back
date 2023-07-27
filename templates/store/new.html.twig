@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle boutique
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Ajouter une boutique
+	</h1>
+
+	{{ include('store/_form.html.twig') }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_store_index') }}" class="btn btn-primary me-2">Retour à la liste</a>
+	{% endif %}
+
+{% endblock %}

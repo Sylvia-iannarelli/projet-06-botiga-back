@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}payment
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5">Votre paiement</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ payment.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom de votre carte</th>
+				<td>{{ payment.cardholderName}}</td>
+			</tr>
+			<tr>
+				<th>Numeo de cartte</th>
+				<td>{{ payment.numberCard }}</td>
+			</tr>
+			{# <tr>
+							<th>Expiratin date carte</th>
+							<td>{{ payment.expirationDate}}</td>
+						</tr> #}
+			<tr>
+				<th>Numero code secret</th>
+				<td>{{ payment.SecretCode}}</td>
+			</tr>
+			<tr>
+				<th>Valide</th>
+				<td>{{ payment.valid}}</td>
+			</tr>
+			{# TODO A traiter #}
+			<tr>
+				{# <th>CreatedAt</th>
+				                <td>{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
+			</tr>
+			<tr>
+				{# <th>UpdatedAt</th>
+				                <td>{{ order.updatedAt ? order.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_payment_index') }}" class="btn btn-success me-2">Retour a la liste</a>
+
+	<a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="btn btn-warning me-2">edit</a>
+
+	{{ include('payment/_delete_form.html.twig')}}
+{% endblock %}
