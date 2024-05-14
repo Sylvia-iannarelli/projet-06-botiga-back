@@ -26,7 +26,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", scale="2", nullable=true)
      * @groups ({"order_list", "order_show"})
      */
     private $orderPrice;
@@ -65,12 +65,12 @@ class Order
         return $this->id;
     }
 
-    public function getOrderPrice(): ?int
+    public function getOrderPrice(): ?float
     {
         return $this->orderPrice;
     }
 
-    public function setOrderPrice(?int $orderPrice): self
+    public function setOrderPrice(?float $orderPrice): self
     {
         $this->orderPrice = $orderPrice;
 
