@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layout.html.twig' %}
 {% block title %}Utilisateur{% endblock %}
 
-{% block body %}
+{% block subBody %}
 	<h1 class="mt-5">Modifier le profil de l'utilisateur</h1>
 
 	{{ include('user/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}

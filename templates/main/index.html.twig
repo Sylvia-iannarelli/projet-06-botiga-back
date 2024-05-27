@@ -1,10 +1,9 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layout.html.twig' %}
 
 {% block title %}Page accueil
 {% endblock %}
 
-{% block body %}
+{% block subBody %}
 <div class="container my-4  card bg-success  p-2 text-white bg-opacity-25 ">
 		<div class="p-5 rounded">
 			<div class="col-sm-8 py-5 mx-auto">
@@ -17,7 +16,6 @@
 			</div>
 		</div>
 	</div>
-
 			
 {# TODO INCLURE LE FORM UTILISATEUR de connexion #}
 		{# {{ include('security/login.html.twig')}}    #}
