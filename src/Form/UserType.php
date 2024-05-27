@@ -127,7 +127,7 @@ class UserType extends AbstractType
                         // options pour le champ 1
                         'first_options'  => [
                             'label' => 'Mot de passe',
-                            'help' => 'Votre mot de passe doit avoir une longueur de 8 à 20 charactères et contenir des lettres et des nombres (espace, caractères spéciaux ou emoji non autorisés).',
+                            'help' => 'Votre mot de passe doit avoir une longueur de 8 à 20 caractères et contenir des lettres et des nombres (espace, caractères spéciaux ou emoji non autorisés).',
                             // contraintes sur le champ de formulaire
                             'constraints' => new NotBlank(),
                         ],
