@@ -42,7 +42,7 @@ class CategoryController extends AbstractController
 
             $categoryRepository->add($category, true);
 
-            $this->addFlash('success', 'Une category a été ajoutée.');
+            $this->addFlash('success', 'Une catégorie a été ajoutée.');
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
