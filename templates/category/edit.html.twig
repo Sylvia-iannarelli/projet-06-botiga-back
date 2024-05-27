@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégorie
-{% endblock %}
+{% block title %}Catégorie{% endblock %}
 
 {% block body %}
 	{{ include('_flash_messages.html.twig') }}
 	<h1 class="mt-5">Modifier la catégorie</h1>
 
-	{{ include('category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+	{{ include('category/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
 
 	<a href="{{ path('app_category_index') }}" class="btn btn-success me-2">Retour à la liste</a>
 

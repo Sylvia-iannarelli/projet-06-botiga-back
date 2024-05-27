@@ -17,9 +17,9 @@ class StoreType extends AbstractType
     {
         $builder
             ->add('siret', TextType::class, [
-                "label" => "Numéro de SIRET",
+                "label" => "N° siret",
                 "attr" => [
-                    "placeholder" => "Numéro de SIRET de l'organisme"
+                    "placeholder" => "N° siret de l'organisme"
                 ]
             ])
 
@@ -31,18 +31,18 @@ class StoreType extends AbstractType
             ])
 
             ->add('street', TextType::class, [
-                "label" => "Nom de rue",
+                "label" => "Numéro et nom de la rue",
                 "required" => false,
                 "attr" => [
-                    "placeholder" => "Nom de rue de l'organisme"
+                    "placeholder" => "Adresse de l'organisme"
                 ]
             ])
 
             ->add('number', TextType::class, [
-                "label" => "Numéro de rue",
+                "label" => "n°",
                 "required" => false,
                 "attr" => [
-                    "placeholder" => "Numéro de rue de l'organisme"
+                    "placeholder" => "n° de rue"
                 ]
             ])
 
@@ -56,7 +56,7 @@ class StoreType extends AbstractType
             ->add('city', TextType::class, [
                 "label" => "Ville",
                 "attr" => [
-                    "placeholder" => "Ville où est située l'organisme"
+                    "placeholder" => "Ville où est situé l'organisme"
                 ]
             ])
 
@@ -69,27 +69,26 @@ class StoreType extends AbstractType
             ])
 
             ->add('schedules', TextareaType::class, [
-                "label" => "Informations concernant les horaires de l'organisme",
+                "label" => "Informations concernant les horaires d'ouverture de l'organisme",
                 "required" => false,
                 "attr" => [
-                    "placeholder" => "Les informations concernant les horaires de l'organisme (exemple: créneaux horaires et disponibilités sur la semaine)"
+                    "placeholder" => "ex. : Ouvert de 9h à 12h et de 13h à 18h du lundi au vendredi, de 9h à 13h le samedi"
                 ]
             ])
 
             ->add('website', UrlType::class, [
-                "label" => "Lien de votre website",
+                "label" => "Lien du site Internet de l'organisme",
                 "required" => false,
                 "attr" => [
-                    "placeholder" => "Le lien URL du website de votre organisme (si il y a)"
+                    "placeholder" => "Le lien URL site Internet"
                 ]
             ])
 
             ->add('description', TextareaType::class, [
-                "label" => "Description concernant votre organisme",
+                "label" => "Description concernant l'organisme",
                 "required" => false,
                 "attr" => [
-                    "placeholder" => "Parlez-nous un peu de vous et de votre organisme ici :).
-Cette description sera visible par les clients, sur votre page Store."
+                    "placeholder" => "Parlez-nous un peu de vous et de votre organisme ici :). Cette description sera visible par les clients, sur votre page Boutique."
                 ]
             ])
         ;

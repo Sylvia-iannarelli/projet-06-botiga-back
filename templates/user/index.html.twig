@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Botiga | Utilisateurs
-{% endblock %}
+{% block title %}Botiga | Utilisateurs{% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Liste des utilisateurs
-	</h1>
+	<h1 class="mt-5">Liste des utilisateurs</h1>
 
 	<table class="table">
 		<thead>
@@ -56,7 +54,7 @@
 
 			{% else %}
 				<tr>
-					<td colspan="10">Il n'y a pas d'utilisateur créé</td>
+					<td colspan="10">Aucun utilisateur enregistré</td>
 				</tr>
 			{% endfor %}
 		</tbody>

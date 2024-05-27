@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commandes
-{% endblock %}
+{% block title %}Botiga | Commandes{% endblock %}
 
 {% block body %}
 	<h1 class="mt-5">Historique de vos commandes</h1>
@@ -11,8 +10,8 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>OrderPrice</th>
-				<th>Quantity</th>
+				<th>Montant total</th>
+				<th>Quantité</th>
 				<th>Producteur</th>
 				<th>Date de création</th>
 				<th>Date de mise à jour</th>
@@ -39,7 +38,7 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="6">Aucune commande enregistrée</td>
+					<td colspan="7">Aucune commande enregistrée</td>
 				</tr>
 			{% endfor %}
 		</tbody>

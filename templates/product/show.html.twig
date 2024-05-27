@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1 class="mt-5">Produit</h1>
+    <h1 class="mt-5">Détail du produit</h1>
 
     <table class="table">
         <tbody>
@@ -42,13 +42,21 @@
             </tr>
             <tr>
                 <th>Image</th>
-                    <td>
-                        <img style="width:300px; heigth:300px;"src="{{ product.picture }}" alt="Image du produit">
-                    </td>
+                <td>
+                    <img style="width:300px; heigth:300px;"src="{{ product.picture }}" alt="Image du produit">
+                </td>
             </tr>
             <tr>
                 <th>Cœurs</th>
                 <td>{{ product.heartLike }}</td>
+            </tr>
+            <tr>
+                <th>Producteur</th>
+                <td>{{ product.store }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ product.category }}</td>
             </tr>
             <tr>
                 <th>Date de création</th>
@@ -58,14 +66,6 @@
                 <th>Date de mise à jour</th>
                 <td>{{ product.updatedAt ? product.updatedAt|date('d-m-Y H:i') }}</td>
             </tr> 
-            <tr>
-                <th>Producteur</th>
-                <td>{{ product.store }}</td>
-            </tr>
-            <tr>
-                <th>Catégorie</th>
-                <td>{{ product.category }}</td>
-            </tr>
         </tbody>
     </table>
 

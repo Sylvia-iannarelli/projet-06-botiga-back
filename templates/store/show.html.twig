@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Store
+{% block title %}Boutique
 {% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Voici votre boutique
+	<h1 class="mt-5">Détail de la boutique
 	</h1>
 
 	<table class="table">
@@ -14,7 +14,7 @@
 				<td>{{ store.id }}</td>
 			</tr>
 			<tr>
-				<th>Siret</th>
+				<th>N° siret</th>
 				<td>{{ store.siret }}</td>
 			</tr>
 			<tr>
@@ -22,11 +22,11 @@
 				<td>{{ store.name }}</td>
 			</tr>
 			<tr>
-				<th>Rue</th>
+				<th>Numéro et nom de la rue</th>
 				<td>{{ store.street }}</td>
 			</tr>
 			<tr>
-				<th>Numéro</th>
+				<th>n°</th>
 				<td>{{ store.number }}</td>
 			</tr>
 			<tr>
@@ -38,11 +38,11 @@
 				<td>{{ store.city }}</td>
 			</tr>
 			<tr>
-				<th>Téléphone</th>
+				<th>Numéro de téléphone</th>
 				<td>{{ store.phone }}</td>
 			</tr>
 			<tr>
-				<th>Horaires</th>
+				<th>Horaires d'ouverture</th>
 				<td>{{ store.schedules }}</td>
 			</tr>
 			<tr>

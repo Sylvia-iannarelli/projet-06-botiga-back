@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}payment
-{% endblock %}
+{% block title %}Paiement{% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Votre paiement</h1>
+	<h1 class="mt-5">Détail du paiement</h1>
 
 	<table class="table">
 		<tbody>
@@ -13,40 +12,40 @@
 				<td>{{ payment.id }}</td>
 			</tr>
 			<tr>
-				<th>Nom de votre carte</th>
+				<th>Nom du titulaire</th>
 				<td>{{ payment.cardholderName}}</td>
 			</tr>
 			<tr>
-				<th>Numeo de cartte</th>
+				<th>Numéro de carte</th>
 				<td>{{ payment.numberCard }}</td>
 			</tr>
 			{# <tr>
-							<th>Expiratin date carte</th>
-							<td>{{ payment.expirationDate}}</td>
-						</tr> #}
+				<th>Expiratin date carte</th>
+				<td>{{ payment.expirationDate}}</td>
+			</tr> #}
 			<tr>
-				<th>Numero code secret</th>
+				<th>CVV</th>
 				<td>{{ payment.SecretCode}}</td>
 			</tr>
 			<tr>
-				<th>Valide</th>
+				<th>Statut</th>
 				<td>{{ payment.valid}}</td>
 			</tr>
 			{# TODO A traiter #}
 			<tr>
 				{# <th>CreatedAt</th>
-				                <td>{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
+				<td>{{ order.createdAt ? order.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
 			</tr>
 			<tr>
 				{# <th>UpdatedAt</th>
-				                <td>{{ order.updatedAt ? order.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+				<td>{{ order.updatedAt ? order.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_payment_index') }}" class="btn btn-success me-2">Retour a la liste</a>
+	<a href="{{ path('app_payment_index') }}" class="btn btn-success me-2">Retour à la liste</a>
 
-	<a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="btn btn-warning me-2">edit</a>
+	<a href="{{ path('app_payment_edit', {'id': payment.id}) }}" class="btn btn-warning me-2">Modifier</a>
 
 	{{ include('payment/_delete_form.html.twig')}}
 {% endblock %}

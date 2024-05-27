@@ -1,28 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Botiga | Boutiques
-{% endblock %}
+{% block title %}Botiga | Boutiques{% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Liste de toutes les boutiques
-	</h1>
+	<h1 class="mt-5">Liste de toutes les boutiques</h1>
 	{{ include('_flash_messages.html.twig') }}
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Siret</th>
-				<th>Name</th>
-				<th>Street</th>
-				<th>Number</th>
-				<th>Zip</th>
-				<th>City</th>
-				<th>Phone</th>
-				<th>Schedules</th>
-				<th>Website</th>
+				<th>N° siret</th>
+				<th>Nom de la boutique</th>
+				<th>Numéro et nom de la rue</th>
+				<th>n°</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<th>Numéro de téléphone</th>
+				<th>Horaires d'ouverture</th>
+				<th>Site Internet</th>
 				<th>Description</th>
-				<th>User</th>
+				<th>Producteur</th>
 				<th>Date de création</th>
 				<th>Date de mise à jour</th>
 				<th>Actions</th>
@@ -53,7 +51,7 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="12">Aucune boutique enregistrée</td>
+					<td colspan="15">Aucune boutique enregistrée</td>
 				</tr>
 			{% endfor %}
 		</tbody>

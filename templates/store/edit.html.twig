@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Store
+{% block title %}Boutique
 {% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Modifier votre boutique
+	<h1 class="mt-5">Modifier la boutique
 	</h1>
 
-	{{ include('store/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+	{{ include('store/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
 
 	{% if is_granted('ROLE_ADMIN') %}
 		<a href="{{ path('app_store_index') }}" class="btn btn-success me-2">Retour à la liste</a>

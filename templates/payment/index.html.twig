@@ -1,27 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Payment index
-{% endblock %}
+{% block title %}Botiga | Paiements{% endblock %}
 
 {% block body %}
-	<h1 class="mt-5">Liste de vos payment
-	</h1>
+	<h1 class="mt-5">Liste de tous les paiements</h1>
 	{{ include('_flash_messages.html.twig') }}
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>CardholderName</th>
-				<th>NumberCard</th>
+				<th>Nom du titulaire</th>
+				<th>Numéro de carte</th>
 				{# <th>ExpirationDate</th> #}
-				<th>SecretCode</th>
-				<th>Valid</th>
-
+				<th>CVV</th>
+				<th>Statut</th>
 				{# TODO A traiter #}
 				{# <th>CreatedAt</th>
-												 <th>UpdatedAt</th> #}
-				<th>actions</th>
+				<th>UpdatedAt</th> #}
+				<th>Actions</th>
 
 			</tr>
 		</thead>
@@ -37,7 +34,7 @@
 
 					{# TODO A traiter #}
 					{# <td>{{payment.createdAt ?store.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-															<td>{{payment.updatedAt ?payment.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+					<td>{{payment.updatedAt ?payment.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
 					<td>
 					   <a class="btn btn-success"href="{{ path('app_payment_show', {'id':payment.id}) }}"> <i class="bi bi-eye"></i> </a>
 						<a class="btn btn-warning" href="{{ path('app_payment_edit', {'id':payment.id}) }}"><i class="bi bi-pencil"></i></a>
@@ -45,11 +42,11 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="12">no records found</td>
+					<td colspan="6">Aucun paiement enregistré</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_payment_new') }}" class="btn btn-primary me-2">Ajouter un payment</a>
+	<a href="{{ path('app_payment_new') }}" class="btn btn-primary me-2">Ajouter un paiement</a>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau Produit{% endblock %}
+{% block title %}Nouveau produit{% endblock %}
 
 {% block body %}
 
-    <h1 class="mt-5">Ajouter votre produit</h1>
+    <h1 class="mt-5">Ajouter un produit</h1>
     {{ include('product/_form.html.twig') }}
 
 	{% if is_granted('ROLE_ADMIN') %}
